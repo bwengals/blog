@@ -4,7 +4,7 @@
     "href": "posts/occams-razor/occams-razor.html",
     "title": "Putting priors on model complexity",
     "section": "",
-    "text": "import pymc as pm\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport arviz as az\n\nseed = 12345678\nrng = np.random.default_rng(seed)\nI saw this quote in Gelman’s blog recently that reminded me of a really cool example I saw, from this short paper titled “Occam’s razor” from NIPS 2000. This example is what made it clock for me why non-parametric model components like Gaussian processes often work better than parametric models like polynomials, splines, or other basis function methods. The quote (from Radford Neal), is:\nThe goal of this post is to reproduce that example in a modern context by building the model in PyMC, sampling with NUTS, and using leave-one-out (LOO) crossvalidation for model selection.\nI originally came across a version of it in the first chapter of Andrew G. Wilson’s thesis. It builds on the example you’ve probably seen in textbooks. Given a simple scatterplot, fit a curve to it and use model selection to determine the right number of basis fucntios to use. It’s designed to demonstrate the bias variance tradeoff. Or, you can use the Bayesian evidence to select the right polynomial degree.\nTo rephrase Neal’s quote in practical terms, when you’re trying to model some unknown function, by trying to find the “right” number of basis functions you’re deliberately limiting the complexity of the model. The problem is that isn’t actually the goal. The real goal is to get a parsimonious representation of the unknown function – no one is asking you directly about the best number of basis vectors you ended up using to do that. It would be better instead to use a complex model of which the simple model is a special case, and let the data decide. At the risk of simplifying too much, the reason people are interested in Gaussian processes is because they are really good at doing this automatically."
+    "text": "import pymc as pm\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport arviz as az\n\nseed = 12345678\nrng = np.random.default_rng(seed)\nI saw this quote in Gelman’s blog recently that reminded me of a really cool example I saw, from this short paper titled “Occam’s razor” from NIPS 2000. This example is what made it clock for me why non-parametric model components like Gaussian processes often work better than parametric models like polynomials, splines, or other basis function methods. The quote (from Radford Neal), is:\nThe goal of this post is to reproduce that example in a modern context by building the model in PyMC, sampling with NUTS, and using leave-one-out (LOO) crossvalidation for model selection.\nI originally came across a version of it in the first chapter of Andrew G. Wilson’s thesis. It builds on the example you’ve probably seen in textbooks. Given a simple scatterplot, fit a curve to it and use model selection to determine the right number of basis fucntios to use. It’s designed to demonstrate the bias variance tradeoff. Or, you can use the Bayesian evidence to select the right polynomial degree.\nTo rephrase Neal’s quote in practical terms, when you’re trying to model some unknown function, by trying to find the “right” number of basis functions you’re deliberately limiting the complexity of the model. The problem is that isn’t actually the goal. The real goal is to get a parsimonious representation of the unknown function – no one is asking you, directly at least, about the best number of basis vectors you should use to do that. It would be better instead to use a complex model of which the simple model is a special case, and let the data decide. At the risk of simplifying too much, the reason people are interested in Gaussian processes is because they are really good at doing this automatically."
   },
   {
     "objectID": "posts/occams-razor/occams-razor.html#the-two-experiments",
@@ -28,13 +28,6 @@
     "text": "Summary\nWe’ve essentially transferred our “prior” on model complexity from a discrete problem via the choice of the number of basis vectors, to a non-scare-quoted continuous prior on model complexity, represented by the gamma parameter. This example nicely demonstrates that the common example you’ve probably seen about model complexity and the bias variance trade-off isn’t really the whole story. I hope this gives a concrete example of the quote\n\nSometimes a simple model will outperform a more complex model . . . Nevertheless, I believe that deliberately limiting the complexity of the model is not fruitful when the problem is evidently complex. Instead, if a simple model is found that outperforms some particular complex model, the appropriate response is to define a different complex model that captures whatever aspect of the problem led to the simple model performing well.\n\nI think it’s kind of interesting that Bayesian regression with normal priors on the coefficients is equivalent to ridge regression, where the scale you use on all the priors is the L2 penalty \\(\\lambda\\). Does it make sense to do ridge regression where successive coefficients get penalized more and more by increasing \\(\\lambda\\)?\nTheres also a direct conceptual connection to Gaussian processes, which can be seen as models that use an infinite number of basis vectors (explained in chapter 2 of R+W’s GPML book). Those infinite number of basis numbers have very particular priors though, which for Matern family GPs, model complexity is directly controlled by the lengthscale parameter.\nThere’s also a relationship to penalized splines. There’s a nice case study in Stan and an implementation here in PyMC. The same underlying concept is at play here too. The idea is not to spend too much time choosing the number and location of knots, but instead choose “too many” knots and rely on a smoothing prior on the coefficients to control model complexity.\nFor practical problems, it means you don’t need to do model selection for these types of problems, you just need a model that can handle the complexity of the data and carefully choose your priors."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Blog",
-    "section": "",
-    "text": "Post With Code\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nJun 23, 2024\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nPutting priors on model complexity\n\n\n\n\n\n\nbayes\n\n\ncode\n\n\n\n\n\n\n\n\n\nJun 23, 2024\n\n\nBill Engels\n\n\n\n\n\n\nNo matching items"
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -42,10 +35,10 @@
     "text": "What about this blog"
   },
   {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Blog",
     "section": "",
-    "text": "This is a post with executable code."
+    "text": "Putting priors on model complexity\n\n\n\n\n\n\nbayes\n\n\ncode\n\n\n\n\n\n\n\n\n\nJun 23, 2024\n\n\nBill Engels\n\n\n\n\n\n\nNo matching items"
   }
 ]
