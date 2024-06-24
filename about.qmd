@@ -9,8 +9,8 @@ about:
       href: https://linkedin.com
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/bwengals
 
 ---
 
-About this blog
+What about this blog

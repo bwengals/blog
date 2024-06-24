@@ -1,13 +1,14 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: "Blog"
+  title: "Bill Engels' Web Log"
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
+        href: https://github.com/bwengals
       - icon: twitter
         href: https://twitter.com
 format:
