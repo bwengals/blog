@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Bill Engels">
+<meta name="author" content="BE">
 <meta name="dcterms.date" content="2024-06-23">
 
-<title>Bill Engels’ Web Log - Priors, polynomial regressions, and ‘Occam’s Razor’</title>
+<title>Bill Engels’ Web Log - Putting priors on model complexity, fix title not about PC priors</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,24 +59,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -138,17 +138,17 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Bill Engels’ Web Log</span>
     </a>
   </div>
@@ -159,7 +159,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -181,46 +181,46 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Priors, polynomial regressions, and ‘Occam’s Razor’</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">bayesian</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Bill Engels </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">June 23, 2024</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Putting priors on model complexity, fix title not about PC priors</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">bayes</div>
+    <div class="quarto-category">code</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>BE </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 23, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 <div id="dca3ddec-099f-47e2-8cbd-ab730243b1ca" class="cell" data-editable="true" data-slideshow="{&quot;slide_type&quot;:&quot;&quot;}" data-tags="[]" data-execution_count="1">
@@ -232,18 +232,18 @@ window.Quarto = {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>seed <span class="op">=</span> <span class="dv">12345678</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>I saw this quote in <a href="https://statmodeling.stat.columbia.edu/2024/05/26/is-there-a-balance-to-be-struck-between-simple-hierarchical-models-and-more-complex-hierarchical-models-that-augment-the-simple-frameworks-with-more-modeled-interactions-when-analyzing-real-data/">Gelman’s</a> <a href="https://statmodeling.stat.columbia.edu/2004/12/10/against_parsimo/">blog</a> recently that reminded me of a cool example I saw awhile back from <a href="https://mlg.eng.cam.ac.uk/zoubin/papers/occam.pdf">this short paper titled “Occam’s razor”</a> from NIPS 2000. The example demonstrated that fitting an unknown function using a large number of basis function with certain regularizing priors was preferable to casting the problem as model selection and choosing the optimal number of basis vectors. It helped it click for me why non-parametric model components like Gaussian processes often work better than parametric models with a fixed set of features like polynomials or splines. The quote (from <a href="https://glizen.com/radfordneal/bnn.book.html">Radford Neal</a> in the context of Bayesian neural networks) is:</p>
+<p>I saw this quote in <a href="https://statmodeling.stat.columbia.edu/2024/05/26/is-there-a-balance-to-be-struck-between-simple-hierarchical-models-and-more-complex-hierarchical-models-that-augment-the-simple-frameworks-with-more-modeled-interactions-when-analyzing-real-data/">Gelman’s</a> <a href="https://statmodeling.stat.columbia.edu/2004/12/10/against_parsimo/">blog</a> recently that reminded me of a really cool example I saw, from <a href="https://mlg.eng.cam.ac.uk/zoubin/papers/occam.pdf">this short paper titled “Occam’s razor”</a> from NIPS 2000. This example is what made it clock for me why non-parametric model components like Gaussian processes often work better than parametric models like polynomials, splines, or other basis function methods. The quote (from <a href="https://glizen.com/radfordneal/bnn.book.html">Radford Neal</a>), is:</p>
 <blockquote class="blockquote">
 <p>Sometimes a simple model will outperform a more complex model . . . Nevertheless, I believe that deliberately limiting the complexity of the model is not fruitful when the problem is evidently complex. Instead, if a simple model is found that outperforms some particular complex model, the appropriate response is to define a different complex model that captures whatever aspect of the problem led to the simple model performing well.</p>
 </blockquote>
 <p>The goal of this post is to reproduce that example in a modern context by building the model in PyMC, sampling with NUTS, and using leave-one-out (LOO) crossvalidation for model selection.</p>
-<p>You’ve probably seen an example like this in textbooks: Given a simple scatterplot, fit a curve to it and use model selection to determine the right number of basis functions to use. You’re usually choosing the best polynomial order. The example is designed to demonstrate the <a href="https://gursimar.github.io/d3-visualizations/bias-var/">bias variance tradeoff</a>. Or alternatively you can <a href="https://alumni.media.mit.edu/~tpminka/statlearn/demo/">use the Bayesian evidence</a> to select the right polynomial degree.</p>
-<p>I think what Neal is saying is that it’s a mistake to transform the original problem into a new one, where the new goal is to find the “right” number of basis functions. It’s better to address the original problem directly, where the goal is to get a parsimonious representation of the unknown function. No one ever actually cares about the best number of basis vectors to use. Transforming the problem creates an unnecessary step.</p>
+<p>I originally came across a version of it in the first chapter of <a href="https://www.cs.cmu.edu/~andrewgw/andrewgwthesis.pdf">Andrew G. Wilson’s thesis</a>. It builds on the example you’ve probably seen in textbooks. Given a simple scatterplot, fit a curve to it and use model selection to determine the right number of basis fucntios to use. It’s designed to demonstrate the <a href="https://gursimar.github.io/d3-visualizations/bias-var/">bias variance tradeoff</a>. Or, you can <a href="https://alumni.media.mit.edu/~tpminka/statlearn/demo/">use the Bayesian evidence</a> to select the right polynomial degree.</p>
+<p>To rephrase Neal’s quote in practical terms, when you’re trying to model some unknown function, by trying to find the “right” number of basis functions you’re deliberately limiting the complexity of the model. The problem is that isn’t actually the goal. The real goal is to get a parsimonious representation of the unknown function – no one is asking you, directly at least, about the best number of basis vectors you should use to do that. It would be better instead to use a complex model of which the simple model is a special case, and let the data decide. At the risk of simplifying too much, the reason people are interested in Gaussian processes is because they are really good at doing this automatically.</p>
 <section id="the-two-experiments" class="level2">
 <h2 class="anchored" data-anchor-id="the-two-experiments">The two experiments</h2>
 <p>We’re going to run two experiments. First, and you’ve probably seen before, we’re going to build a sequence of polynomial regression models with increasing complexity and then choose the “best” model, according to the leave-one-out crossvalidation (LOO-CV) metric. We’ll use the exact same priors for the polynomial coefficients.</p>
-<p>Then in the second experiment, we’ll do the exact same thing, <strong>except, we’ll keep decreasing the prior scale we use for the polynomial coefficients as we add more terms</strong>. Instead of the number of basis vectors, we’re using our priors as the hedge against overfitting. Then we’ll see what LOO-CV says is the best model.</p>
-<p>For our experiment, here’s some data that’s generated from a step function with a bit of additive Gaussian noise.</p>
+<p>Then in the second experiment, we’ll do the exact same thing, <strong>except, we’ll keep decreasing the prior scale we use for the polynomial coefficients as we add more terms</strong>. We’re effectively using our priors as a hedge against overfitting. Then we’ll see what LOO-CV says is the best model, and compare the results to the first experiment.</p>
+<p>For our toy example, here’s some data that’s generated from a step function with a bit of additive Gaussian noise.</p>
 <div id="e1cbdf36-39d4-4c61-983d-c91f487b8a12" class="cell" data-execution_count="72">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">50</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.ones(<span class="dv">50</span>)</span>
@@ -257,7 +257,7 @@ window.Quarto = {
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x"</span>)<span class="op">;</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"y"</span>)<span class="op">;</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"lower right"</span>)<span class="op">;</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Our example dataset"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Our toy dataset"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -341,7 +341,7 @@ window.Quarto = {
 </section>
 <section id="experiment-1-using-model-selection-to-find-the-best-polynomial-degree-the-usual-story" class="level1">
 <h1>Experiment 1: Using model selection to find the best polynomial degree, the usual story</h1>
-<p>First we’ll try and find the right number of polynomial degree to use in our model. This is the usual story – use model selection to directly choose the “correct” degrees of freedom we’ll use. Notice that the underlying function isn’t actually in the space represented by our polynomial basis (of finite order). It’s a step function with the discontinuity at <span class="math inline">\(x=0\)</span>. Real world data is never literally generated by linear combinations of polynomials anyway. Our finite basis set can’t represent the true underlying function here, but the model selection procedure will still try to find the balance between fit and model complexity, parsimony.</p>
+<p>First we’ll try and find the right number of polynomial degree to use in our model. This is the usual story – use model selection to directly choose the “correct” degrees of freedom we’ll use. You’ve probably seen this example in a textbook in the context of overfitting. One thing about this problem that makes it more relevant to the real world is that the underlying function here isn’t actually in the space represented by our polynomial basis (of finite order). It’s a step function with the discontinuity at <span class="math inline">\(x=0\)</span>. Real world data is never literally generated by linear combinations of polynomials anyway (OK or step functions, but bear with me!). Our finite basis set can’t represent the true underlying function here, but the model selection procedure will still try to find the balance between fit and model complexity, parsimony.</p>
 <p>We’ll use Arviz and see what leave-one-out crossvalidation (LOO) says is the best model. Since we’ll be fitting the model over and over with different polynomial degrees, we can make things a bit easier by wrapping our PyMC model into a function by stealing <a href="https://www.zinkov.com/posts/2023-alternative-frontends-pymc/">a cool trick from Rob Zinkov here</a>.</p>
 <div id="f450aa0a-4b23-4bc9-b1ae-2a7ce1664c66" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> wraps</span>
@@ -455,7 +455,7 @@ Wall time: 3min 45s</code></pre>
 </div>
 </div>
 <p>We can see that Degree 2 clearly underfits. The Degree 3 and Degree 4 results look pretty similar, and maybe underfit. Degree 15 and 16 are starting to show visible signs of overfitting. What does LOO-CV say is the best?</p>
-<p>We’ll plot the ELPD scores and their standard errors as a function of polynomial degree. We get some warnings about the Pareto shape being greater than 0.7 that we’ll ignore for now, since it’s a bit off topic (to get an accurate LOO-CV score we really should refit the model to estimate the ELPD when leaving out these high leverage points).</p>
+<p>Next, we’ll plot the ELPD scores and their standard errors as a function of polynomial degree. We get some warnings about the Pareto shape being greater than 0.7. We’ll silence the warning for now, since it’s a bit off topic (to get an accurate LOO-CV score we really should refit the model to estimate the ELPD when leaving out these high leverage points).</p>
 <div id="08f21ad1-aeb5-4907-b39b-069b6b9e52b6" class="cell" data-execution_count="64">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>warnings.simplefilter(<span class="st">"ignore"</span>, category<span class="op">=</span><span class="pp">UserWarning</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -906,13 +906,18 @@ Wall time: 4min 5s</code></pre>
 </div>
 </div>
 </div>
-<p>This shows that putting a prior on <code>gamma</code> actually gives the best model in this situation, by far.</p>
+<p>This shows that putting a prior on <code>gamma</code> actually gives the best model, by far.</p>
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>We’ve essentially transformed a discrete prior on model complexity via the choice of the number of basis vectors, to a continuous prior on model complexity, represented by the <code>gamma</code> parameter. This example nicely demonstrates that the common example you’ve probably seen about model complexity and the bias variance trade-off isn’t really the whole story.</p>
-<p>Neal argues that it’s better to use a complex model where the simple model is a special case, and let the data decide. Gaussian processes are really good at doing this. In particular, the HSGP approximation looks almost exactly like this.</p>
-<p>There’s also a relationship to penalized splines. There’s a nice <a href="https://mc-stan.org/users/documentation/case-studies/splines_in_stan.html">case study in Stan</a> and an implementation <a href="https://gist.github.com/AustinRochford/d640a240af12f6869a7b9b592485ca15">here in PyMC</a>. The same underlying concept is at play here too. The idea is not to spend too much time choosing the number and location of knots, but instead choose “too many” knots and rely on the coefficient priors to control model complexity. For spline coefficients, we also care about <em>smoothness</em>, in addition to how they prior penalizes their distance from zero. Flatter functions will all have more similar spline coefficients.</p>
+<p>We’ve essentially transferred our “prior” on model complexity from a discrete problem via the choice of the number of basis vectors, to a non-scare-quoted continuous prior on model complexity, represented by the <code>gamma</code> parameter. This example nicely demonstrates that the common example you’ve probably seen about model complexity and the bias variance trade-off isn’t really the whole story. I hope this gives a concrete example of the quote</p>
+<blockquote class="blockquote">
+<p>Sometimes a simple model will outperform a more complex model . . . Nevertheless, I believe that deliberately limiting the complexity of the model is not fruitful when the problem is evidently complex. Instead, if a simple model is found that outperforms some particular complex model, the appropriate response is to define a different complex model that captures whatever aspect of the problem led to the simple model performing well.</p>
+</blockquote>
+<p>I think it’s kind of interesting that Bayesian regression with normal priors on the coefficients is equivalent to ridge regression, where the scale you use on all the priors is the L2 penalty <span class="math inline">\(\lambda\)</span>. Does it make sense to do ridge regression where successive coefficients get penalized more and more by increasing <span class="math inline">\(\lambda\)</span>?</p>
+<p>Theres also a direct conceptual connection to Gaussian processes, which can be seen as models that use an infinite number of basis vectors (explained in chapter 2 of <a href="https://gaussianprocess.org/gpml/chapters/RW.pdf">R+W’s GPML book</a>). Those infinite number of basis numbers have very particular priors though, which for Matern family GPs, model complexity is directly controlled by the lengthscale parameter.</p>
+<p>There’s also a relationship to penalized splines. There’s a nice <a href="https://mc-stan.org/users/documentation/case-studies/splines_in_stan.html">case study in Stan</a> and an implementation <a href="https://gist.github.com/AustinRochford/d640a240af12f6869a7b9b592485ca15">here in PyMC</a>. The same underlying concept is at play here too. The idea is not to spend too much time choosing the number and location of knots, but instead choose “too many” knots and rely on a smoothing prior on the coefficients to control model complexity.</p>
+<p>For practical problems, it means you don’t need to do model selection for these types of problems, you just need a model that can handle the complexity of the data and carefully choose your priors.</p>
 
 
 </section>

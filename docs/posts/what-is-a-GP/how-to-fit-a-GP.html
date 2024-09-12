@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Bill Engels’ Web Log - Blog</title>
+<title>Bill Engels’ Web Log</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,29 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,35 +102,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -130,17 +137,17 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Bill Engels’ Web Log</span>
     </a>
   </div>
@@ -151,7 +158,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -173,101 +180,119 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Blog</h1>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-left">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bayesian">bayesian <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
+<div id="a4af8ca6-98ff-4ea2-8a5a-f9186b9c6b7c" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymc <span class="im">as</span> pm</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytensor.tensor <span class="im">as</span> pt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This will be about how to fit GPs effectively using MCMC, where how you choose you’re priors is really important. In “GP only” packages like GPflow, GPyTorch or GPy that rely more variational inference or type 2 maximum likelihood, prior choice is still important, but isn’t as critical for success. The reason is because you only need to find a single solution for the hyperparameters, usually the lengthscales. With MCMC, we’re averaging over all possible lengthscale choices.</p>
+<section id="choosing-a-prior-for-the-lengthscale" class="level3">
+<h3 class="anchored" data-anchor-id="choosing-a-prior-for-the-lengthscale">Choosing a prior for the lengthscale</h3>
+<p>Choosing a prior for the lengthscale is really important. In a lot of Bayesian models you can more often than not get away with using weakly informative priors, like Gaussians with large variances for regression coeficients, or half-normals for standard deviation parameters, and trust that your model will give reasonable results. With GPs this isn’t the case, you’ll have to pause and think carefully about it for every model. There’s a good amount of research on the topic, so there are guidelines we can follow. I think most people hit a wall when they’re working with GPs at this point. After hearing about how great GPs are and learning the basics, when they apply them to a problem they choose poor priors or they don’t fully understanding what their prior choices are actually implying. Fortunately, it doesn’t require a ton of math to understand the failure modes, and it’s really not that complicated once you walk through it.</p>
+<p>In this article we’ll walk through these failure modes and provide guidelines for setting the priors on Gaussian processes that use Matern covariances. Before digging into that, the TLDR on guidelines for setting priors on GP parameters is: 1. The PC prior. This is defined for one, two, or three dimensional problems (like timeseries, spatial, and spatio-temporal problems). This prior makes sense if you’re not sure a GP is present in your data and you’re trying to detect one. 2. The inverse gamma for the lengthscale. The theoretical basis for this prior is a bit less developed than the PC prior, but it has nice properties that make it usually work well. In fact, the PC prior in two dimensions is the inverse gamma. 3. For the scale parameter <span class="math inline">\(\eta\)</span> I prefer the Exponential prior. First it’s part of the PC prior, and second it has a longer tail than something like a half-normal. This choice isn’t as critical as the lengthscale prior though.</p>
+<p>Before explaining why these priors work well we’ll start using them first, while we work through the GP sampling failure modes. While we work through the GP failure modes, we’ll explain why these priors work well ahd how they fix some of these problems.</p>
+<section id="reason-1.-identifiability-issues-between-the-gp-and-an-intercept" class="level4">
+<h4 class="anchored" data-anchor-id="reason-1.-identifiability-issues-between-the-gp-and-an-intercept">Reason 1. Identifiability issues between the GP and an intercept</h4>
+<p>In order to estimate the parameters of any model, Bayesian or not, you need to be sure that they are identifiabile. For instance, say you are trying to estimate the mean <span class="math inline">\(\mu\)</span>, of a list of numbers <span class="math inline">\(y\)</span>. The mean is perfectly identifiable. But, now imagine that for some reason you parameterized the mean <span class="math inline">\(\mu\)</span> as the sum of two unknown parameters, <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_2\)</span>, so your model was <span class="math inline">\(\mu = \theta_1 + \theta_2\)</span>. You can still estimate the mean <span class="math inline">\(\mu\)</span> perfectly, but <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_2\)</span> are not identifiable. You could add a constant to one, and subtract it from the other, and <span class="math inline">\(\mu\)</span> would be the same. GPs embedded in larger models often have identifiability issues, and it can sometimes depend on the lengthscale prior.</p>
+<p>The problem can show up in two situations: 1. With a large lengthscale, the GP component can become confounded with the intercept in your model.<br>
+2. The relative scale of latent function the GP is trying to capture and the intercept, are similar.</p>
+<p>Take the data below. The underlying function <span class="math inline">\(f(x)\)</span> that we want to model with a GP is shown in blue. The observed data <span class="math inline">\(y\)</span>, in black, is just this function with some added Gaussian noise, to keep things simple. You’ll see that it oscillates, but not around zero. Instead it oscillates around 100.</p>
+<div id="0a03f4c4-7584-41e8-8a14-05ae8bce052e" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">60</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">10</span> <span class="op">*</span> np.sort(np.random.rand(n))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>f_true <span class="op">=</span> <span class="fl">0.1</span> <span class="op">+</span> np.sin(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> x <span class="op">*</span> <span class="fl">0.07</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> f_true <span class="op">+</span> <span class="fl">0.25</span> <span class="op">*</span> np.random.randn(n)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>plt.plot(x, f_true)<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, color<span class="op">=</span><span class="st">"k"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="how-to-fit-a-GP_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="28abf8a0-a136-44f5-aed9-03451774d9d7" class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pm.Model() <span class="im">as</span> model:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    eta <span class="op">=</span> pm.Exponential(<span class="st">"eta"</span>, scale<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    ell <span class="op">=</span> pm.InverseGamma(<span class="st">"ell"</span>, mu<span class="op">=</span><span class="dv">3</span>, sigma<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    cov <span class="op">=</span> eta<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> pm.gp.cov.Matern52(<span class="dv">1</span>, ls<span class="op">=</span>ell)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    gp <span class="op">=</span> pm.gp.Latent(cov_func<span class="op">=</span>cov)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    intercept <span class="op">=</span> pm.Normal(<span class="st">"intercept"</span>, mu<span class="op">=</span><span class="fl">0.0</span>, sigma<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> gp.prior(<span class="st">"f"</span>, X<span class="op">=</span>x[:, <span class="va">None</span>])</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> pm.HalfNormal(<span class="st">"sigma"</span>, sigma<span class="op">=</span><span class="fl">5.0</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    pm.Normal(<span class="st">"y"</span>, mu<span class="op">=</span>intercept <span class="op">+</span> f, sigma<span class="op">=</span>sigma, observed<span class="op">=</span>y)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> model:</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    idata <span class="op">=</span> pm.sample(nuts_sampler<span class="op">=</span><span class="st">"numpyro"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"0cfa9b8c6787444ca0af28a1487f32af","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"1dc82f8d40b54b19a053a2c1d7a79fde","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"afb9bfd03e2b4f78bbbfdf050636386d","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"1406ac2905ba407ca28ad26234e8a9ba","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>There were 70 divergences after tuning. Increase `target_accept` or reparameterize.</code></pre>
+</div>
+</div>
+<div id="9de23346-eb90-44b7-a221-c1bf643846a5" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> az.extract(idata, var_names<span class="op">=</span><span class="st">"f"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#intercept = az.extract(idata, var_names="intercept")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="03cbd3e1-ab71-4630-90d1-82103954e5ec" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>intercept</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="54">
+<pre><code>0.0</code></pre>
+</div>
+</div>
+<div id="3fa1e622-c76b-4ff7-b354-4f19990366b0" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>intercept <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>pm.gp.util.plot_gp_dist(ax<span class="op">=</span>ax, samples<span class="op">=</span>(f <span class="op">+</span> intercept).data.T, x<span class="op">=</span>x)<span class="op">;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, color<span class="op">=</span><span class="st">"k"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="how-to-fit-a-GP_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
+</section>
 
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1721066667225" data-listing-reading-time-sort="4" data-listing-word-count-sort="697">
-<div class="thumbnail">
-<p><a href="./posts/what-is-a-GP/how-to-fit-a-GP.html" class="no-external"></a></p><a href="./posts/what-is-a-GP/how-to-fit-a-GP.html" class="no-external">
-<p class="card-img-top"><img src="posts/what-is-a-GP/how-to-fit-a-GP_files/figure-html/cell-3-output-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/what-is-a-GP/how-to-fit-a-GP.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/what-is-a-GP/how-to-fit-a-GP.html" class="no-external">Choosing a prior for the lengthscale</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/what-is-a-GP/how-to-fit-a-GP.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/what-is-a-GP/how-to-fit-a-GP.html" class="no-external">This will be about how to fit GPs effectively using MCMC, where how you choose you’re priors is really important. In “GP only” packages like GPflow, GPyTorch or GPy that…</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/what-is-a-GP/how-to-fit-a-GP.html" class="no-external"></a></p><a href="./posts/what-is-a-GP/how-to-fit-a-GP.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="bayesian" data-listing-date-sort="1719126000000" data-listing-file-modified-sort="1726126515502" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1714">
-<div class="thumbnail">
-<p><a href="./posts/occams-razor/occams-razor.html" class="no-external"></a></p><a href="./posts/occams-razor/occams-razor.html" class="no-external">
-<p><img src="./posts/occams-razor/image.jpg" class="thumbnail-image"></p>
-</a><p><a href="./posts/occams-razor/occams-razor.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/occams-razor/occams-razor.html" class="no-external">Priors, polynomial regressions, and ‘Occam’s Razor’</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/occams-razor/occams-razor.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('bayesian'); return false;">
-bayesian
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/occams-razor/occams-razor.html" class="no-external">I saw this quote in Gelman’s blog recently that reminded me of a cool example I saw awhile back from this short paper titled “Occam’s razor” from NIPS 2000. The example…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/occams-razor/occams-razor.html" class="no-external">
-<div class="listing-date">
-Jun 23, 2024
-</div>
-<div class="listing-author">
-Bill Engels
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
