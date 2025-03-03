@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Bill Engels">
-<meta name="dcterms.date" content="2024-02-23">
+<meta name="dcterms.date" content="2025-03-03">
 
 <title>Priors, polynomial regressions, and ‘Occam’s Razor’ – Bill Engels' Web Log</title>
 <style>
@@ -204,7 +204,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">February 23, 2024</p>
+        <p class="date">March 3, 2025</p>
       </div>
     </div>
     
@@ -342,7 +342,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>There are other benefits to orthogonalizing the basis, but our main reason is to have all the basis function coefficients living on the same scale. Notice in the left panel the basis functions range from [0, 2], [0, 4] and [0, 9], so scale-wise they’re all over the place. A lesser reason (for our purposes here) is that the basis functions are now orthogonal, which makes things quite a bit easier on the sampler. The two inset panels show the correlation matrix of the 3 non-constant basis vectors.</p>
+<p>There are other benefits to orthogonalizing the basis, but our main reason is to have all the basis function coefficients living on the same scale. Notice in the left panel the basis functions range from [0, 2], [0, 4] and [0, 9], so scale-wise they’re all over the place. A lesser reason (for our purposes here) is that the basis functions are now orthogonal, which makes things quite a bit easier on the sampler. The two inset panels show the correlation matrix of the first 3 non-constant basis vectors.</p>
 </section>
 </section>
 <section id="experiment-1-using-model-selection-to-find-the-best-polynomial-degree-the-usual-story" class="level1">
@@ -387,8 +387,8 @@ window.Quarto = {
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    idata_results1[<span class="ss">f"Exp 1, degree </span><span class="sc">{</span>degree<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> idata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 2min 51s, sys: 6.61 s, total: 2min 58s
-Wall time: 2min 54s</code></pre>
+<pre><code>CPU times: user 2min 54s, sys: 6.69 s, total: 3min
+Wall time: 2min 57s</code></pre>
 </div>
 </div>
 <div id="02337804-a2d1-44c0-92b2-fa5ab86db869" class="cell" data-execution_count="8">
@@ -488,7 +488,7 @@ Wall time: 2min 54s</code></pre>
 <p>For the models in experiment 1, we put a normal prior on every <code>beta</code> coefficient that had the same standard deviation of 5. The difference between models was only the number of polynomial basis vectors. This prior actually means that we think that high order, complex, polynomial model is equally likely as a simple model. Is that really what we think?</p>
 <p>For the models in experiment 2, we’re going to downweight the scales of the priors on successive coefficients. Now it’s <em>possible</em> for the model to use really high order polynomials in the fit, but it’s going to need more evidence from the data to do so. We’ll see that this goes a step past preventing overfitting, to something more like automatic model selection.</p>
 <p>A plot of the new coefficient scales is shown below. The prior scale from experiment one is a horizontal line at 5, the same as we increase the polynomial degree. For the models in experiment 2 we have the prior scale decay starting at 5, and approaching but never reaching zero as the degree gets large. The plot shows the square root of the scale, so the prior variance.</p>
-<div id="adbeab80-601a-4675-8344-e219ed2b738c" class="cell" data-execution_count="21">
+<div id="adbeab80-601a-4675-8344-e219ed2b738c" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gamma <span class="op">=</span> <span class="fl">1.25</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>degree <span class="op">=</span> <span class="dv">20</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>scale <span class="op">=</span> np.sqrt(<span class="fl">5.0</span> <span class="op">*</span> np.arange(<span class="dv">1</span>, degree <span class="op">+</span> <span class="dv">2</span>) <span class="op">**</span> (<span class="op">-</span>gamma))</span>
@@ -538,7 +538,7 @@ Wall time: 2min 54s</code></pre>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    idata_results2[<span class="ss">f"Exp 2, degree </span><span class="sc">{</span>degree<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> idata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 3min 4s, sys: 6.2 s, total: 3min 10s
+<pre><code>CPU times: user 3min 4s, sys: 6.21 s, total: 3min 10s
 Wall time: 3min 5s</code></pre>
 </div>
 </div>
@@ -770,18 +770,7 @@ Wall time: 3min 5s</code></pre>
                     </td>
                     <td>2000</td>
                     <td>0</td>
-                    <td>0.36</td>
-                    <td>15</td>
-                </tr>
-            
-                <tr>
-                    <td class="progress-cell">
-                        <progress max="2000" value="2000">
-                        </progress>
-                    </td>
-                    <td>2000</td>
-                    <td>0</td>
-                    <td>0.33</td>
+                    <td>0.21</td>
                     <td>15</td>
                 </tr>
             
@@ -793,7 +782,7 @@ Wall time: 3min 5s</code></pre>
                     <td>2000</td>
                     <td>0</td>
                     <td>0.35</td>
-                    <td>15</td>
+                    <td>31</td>
                 </tr>
             
                 <tr>
@@ -803,8 +792,19 @@ Wall time: 3min 5s</code></pre>
                     </td>
                     <td>2000</td>
                     <td>0</td>
-                    <td>0.40</td>
-                    <td>31</td>
+                    <td>0.37</td>
+                    <td>7</td>
+                </tr>
+            
+                <tr>
+                    <td class="progress-cell">
+                        <progress max="2000" value="2000">
+                        </progress>
+                    </td>
+                    <td>2000</td>
+                    <td>0</td>
+                    <td>0.37</td>
+                    <td>7</td>
                 </tr>
             
             
@@ -827,7 +827,7 @@ Wall time: 3min 5s</code></pre>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>elpd_data <span class="op">=</span> az.loo(idata)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ELPD: </span><span class="sc">{</span>elpd_data<span class="sc">.</span>elpd_loo<span class="sc">:0.2f}</span><span class="ss">, ELPD SE: </span><span class="sc">{</span>elpd_data<span class="sc">.</span>se<span class="sc">:0.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>ELPD: -19.31, ELPD SE: 5.65</code></pre>
+<pre><code>ELPD: -19.55, ELPD SE: 5.65</code></pre>
 </div>
 </div>
 <div id="e793fe60-c011-415c-b071-2a1d72772fc0" class="cell" data-execution_count="19">
@@ -859,120 +859,120 @@ Wall time: 3min 5s</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Exp 2, degree 7</td>
 <td>0</td>
-<td>-17.401063</td>
-<td>6.902136</td>
+<td>-17.454417</td>
+<td>6.941462</td>
 <td>0.000000</td>
-<td>9.787137e-01</td>
-<td>5.593505</td>
+<td>8.843849e-01</td>
+<td>5.637879</td>
 <td>0.000000</td>
+<td>True</td>
+<td>log</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Exp 2, degree 8</td>
+<td>1</td>
+<td>-17.889721</td>
+<td>7.308506</td>
+<td>0.435304</td>
+<td>8.432485e-11</td>
+<td>5.551900</td>
+<td>0.345881</td>
 <td>False</td>
+<td>log</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Exp 2, degree 9</td>
+<td>2</td>
+<td>-18.075383</td>
+<td>7.693926</td>
+<td>0.620966</td>
+<td>8.439987e-11</td>
+<td>5.598566</td>
+<td>0.523907</td>
+<td>False</td>
+<td>log</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Exp 1, degree 7</td>
+<td>3</td>
+<td>-18.110580</td>
+<td>8.180686</td>
+<td>0.656163</td>
+<td>9.358834e-02</td>
+<td>5.170638</td>
+<td>1.436110</td>
+<td>True</td>
+<td>log</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Exp 2, degree 14</td>
+<td>4</td>
+<td>-18.215979</td>
+<td>8.552262</td>
+<td>0.761563</td>
+<td>8.368721e-11</td>
+<td>5.167451</td>
+<td>1.050139</td>
+<td>True</td>
 <td>log</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Exp 2, degree 11</td>
-<td>1</td>
-<td>-18.018749</td>
-<td>7.941087</td>
-<td>0.617687</td>
-<td>6.929968e-10</td>
-<td>5.314783</td>
-<td>0.675112</td>
-<td>True</td>
-<td>log</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Exp 2, degree 8</td>
-<td>2</td>
-<td>-18.093774</td>
-<td>7.486223</td>
-<td>0.692711</td>
-<td>6.958982e-10</td>
-<td>5.550235</td>
-<td>0.344700</td>
-<td>False</td>
-<td>log</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Exp 2, degree 15</td>
-<td>3</td>
-<td>-18.146401</td>
-<td>8.808967</td>
-<td>0.745338</td>
-<td>6.906713e-10</td>
-<td>5.292928</td>
-<td>0.916263</td>
-<td>True</td>
-<td>log</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Exp 2, degree 10</td>
-<td>4</td>
-<td>-18.214279</td>
-<td>7.954499</td>
-<td>0.813216</td>
-<td>6.948321e-10</td>
-<td>5.440477</td>
-<td>0.586174</td>
-<td>True</td>
-<td>log</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Exp 2, degree 12</td>
 <td>5</td>
-<td>-18.296179</td>
-<td>8.241711</td>
-<td>0.895117</td>
-<td>6.940372e-10</td>
-<td>5.276578</td>
-<td>0.706194</td>
+<td>-18.249420</td>
+<td>8.155402</td>
+<td>0.795003</td>
+<td>8.424486e-11</td>
+<td>5.345232</td>
+<td>0.717376</td>
 <td>True</td>
 <td>log</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Exp 1, degree 7</td>
+<td data-quarto-table-cell-role="th">Exp 2, degree 16</td>
 <td>6</td>
-<td>-18.303003</td>
-<td>8.361935</td>
-<td>0.901940</td>
-<td>0.000000e+00</td>
-<td>5.217531</td>
-<td>1.367474</td>
-<td>True</td>
-<td>log</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Exp 2, degree 9</td>
-<td>7</td>
-<td>-18.337432</td>
-<td>7.883651</td>
-<td>0.936370</td>
-<td>6.972274e-10</td>
-<td>5.630785</td>
-<td>0.434465</td>
-<td>True</td>
-<td>log</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Exp 2, degree 13</td>
-<td>8</td>
-<td>-18.423467</td>
-<td>8.523570</td>
-<td>1.022404</td>
-<td>6.942818e-10</td>
-<td>5.194479</td>
-<td>0.808235</td>
+<td>-18.413651</td>
+<td>9.180511</td>
+<td>0.959234</td>
+<td>8.374915e-11</td>
+<td>5.385329</td>
+<td>1.087181</td>
 <td>True</td>
 <td>log</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Exp 2, degree 18</td>
+<td>7</td>
+<td>-18.417945</td>
+<td>9.394612</td>
+<td>0.963528</td>
+<td>8.369683e-11</td>
+<td>5.313482</td>
+<td>1.114191</td>
+<td>True</td>
+<td>log</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Exp 2, degree 12</td>
+<td>8</td>
+<td>-18.425259</td>
+<td>8.428294</td>
+<td>0.970842</td>
+<td>8.436344e-11</td>
+<td>5.245622</td>
+<td>0.767023</td>
+<td>True</td>
+<td>log</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Exp 2, degree 13</td>
 <td>9</td>
-<td>-18.457018</td>
-<td>9.384497</td>
-<td>1.055955</td>
-<td>6.915323e-10</td>
-<td>5.300959</td>
-<td>0.995212</td>
+<td>-18.448142</td>
+<td>8.545733</td>
+<td>0.993726</td>
+<td>8.429243e-11</td>
+<td>5.217694</td>
+<td>0.846622</td>
 <td>False</td>
 <td>log</td>
 </tr>
@@ -982,7 +982,7 @@ Wall time: 3min 5s</code></pre>
 </div>
 </div>
 </div>
-<p>This shows that putting a prior on <code>gamma</code> actually gives the best model in this situation, by far.</p>
+<p>It looks like in this case putting a prior on <code>gamma</code> isn’t as good as choosing <code>gamma = 1.25</code>, however, notice that the ELPD estimates are all within the standard error of each other.</p>
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
