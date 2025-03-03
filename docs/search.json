@@ -35,9 +35,9 @@
     "text": "Summary\nWe’ve essentially transformed a discrete prior on model complexity via the choice of the number of basis vectors, to a continuous prior on model complexity, represented by the gamma parameter. This example nicely demonstrates that the common example you’ve probably seen about model complexity and the bias variance trade-off isn’t really the whole story.\nNeal argues that it’s better to use a complex model where the simple model is a special case, and let the data decide. Gaussian processes are really good at doing this. In particular, the HSGP approximation looks almost exactly like this.\nThere’s also a relationship to penalized splines. There’s a nice case study in Stan and an implementation here in PyMC. The same underlying concept is at play here too. The idea is not to spend too much time choosing the number and location of knots, but instead choose “too many” knots and rely on the coefficient priors to control model complexity. For spline coefficients, we also care about smoothness, in addition to how they prior penalizes their distance from zero. Flatter functions will all have more similar spline coefficients."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Blog",
+    "objectID": "posts/what-is-a-GP/how-to-fit-a-GP.html",
+    "href": "posts/what-is-a-GP/how-to-fit-a-GP.html",
+    "title": "Bill Engels' Web Log",
     "section": "",
     "text": "Priors, polynomial regressions, and ‘Occam’s Razor’\n\n\n\n\n\n\nbayesian\n\n\n\n\n\n\n\n\n\nJun 23, 2024\n\n\nBill Engels\n\n\n\n\n\n\nNo matching items"
   }
