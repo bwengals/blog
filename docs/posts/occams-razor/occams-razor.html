@@ -249,7 +249,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="the-two-experiments">The two experiments</h2>
 <p>We’re going to run two experiments. First, and you’ve probably seen before, we’re going to build a sequence of polynomial regression models with increasing complexity and then choose the “best” model, according to the leave-one-out crossvalidation (LOO-CV) metric. We’ll use the exact same priors for the polynomial coefficients.</p>
 <p>Then in the second experiment, we’ll do the exact same thing, <strong>except, we’ll keep decreasing the prior scale we use for the polynomial coefficients as we add more terms</strong>. Instead of the number of basis vectors, we’re using our priors as the hedge against overfitting. Then we’ll see what LOO-CV says is the best model.</p>
-<p>For our experiment, here’s some data that’s generated from a step function with a bit of additive Gaussian noise.</p>
+<p>We’ll use data generated from a step function with a bit of additive Gaussian noise for our two experiments. Notice that since we’re using polynomial basis functions, none of our proposed models will be correct. We’re in the <a href="https://arxiv.org/pdf/1704.02030">M-open case</a>.</p>
 <div id="e1cbdf36-39d4-4c61-983d-c91f487b8a12" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">50</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.ones(<span class="dv">50</span>)</span>
@@ -274,7 +274,7 @@ window.Quarto = {
 </div>
 <section id="details" class="level3">
 <h3 class="anchored" data-anchor-id="details">Details</h3>
-<p>Before getting going and actually modeling this, there’s one preliminary thing to mention. Feel free to skip over this bit about the QR decomposition because it’s not really core to the goal here. We just need it to make our priors on the polynomial coefficients comparable and on the same overall scale.</p>
+<p>Before getting going and actually modeling this there’s one preliminary thing to mention. Feel free to skip over this bit about the QR decomposition because it’s not really core to the goal here. We just need it to make our priors on the polynomial coefficients comparable and on the same overall scale.</p>
 <p>We’ll use the <a href="https://betanalpha.github.io/assets/case_studies/qr_regression.html">QR decomposition</a> to orthogonalize our basis. I found some <a href="https://davmre.github.io/blog/python/2013/12/15/orthogonal_poly">Python code to do this here</a>, pasted below.</p>
 <div id="f6d82855-2b42-454b-b0d0-26f3a420a5f8" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ortho_poly_fit(x, degree <span class="op">=</span> <span class="dv">1</span>):</span>
@@ -473,7 +473,7 @@ Wall time: 2min 57s</code></pre>
 </div>
 </div>
 </div>
-<p>Model selection gives a fit with a 7th degree polynomial as the best model. Looking at the plot of all the fits, sure, why not? The standard errors are helpful here. Their width aligns pretty well what what I’m seeing by eye in the fits, marked by the gray dotted lines. Models from degree, say degree 1 though 14 are all pretty reasonable in terms of the standard error. Past that though, the drop off is steep and it looks like overfitting becomes a serious problem. Overall though, the model with the 7th degree polynomial is the clear winner.</p>
+<p>Model selection gives a fit with a 7th degree polynomial as the best model. Looking at the plot of all the fits – sure, why not? The standard errors are helpful here. Their width aligns pretty well what what I’m seeing by eye in the fits, marked by the gray dotted lines. Models from say, degree 1 though 14 are all pretty reasonable in terms of the standard error. Past that though, the drop off is steep and it looks like overfitting becomes a serious problem. Overall the model with the 7th degree polynomial is the winner.</p>
 </section>
 <section id="experiment-2-scaling-the-prior" class="level1">
 <h1>Experiment 2: Scaling the prior</h1>
@@ -990,6 +990,7 @@ Wall time: 3min 5s</code></pre>
 <p>Neal argues that it’s better to use a complex model where the simple model is a special case, and let the data decide. Gaussian processes are really good at doing this. In particular, the HSGP approximation looks almost exactly like this.</p>
 <p>There’s also a relationship to penalized splines. There’s a nice <a href="https://mc-stan.org/users/documentation/case-studies/splines_in_stan.html">case study in Stan</a> and an implementation <a href="https://gist.github.com/AustinRochford/d640a240af12f6869a7b9b592485ca15">here in PyMC</a>. The same underlying concept is at play here too. The idea is not to spend too much time choosing the number and location of knots, but instead choose “too many” knots and rely on the coefficient priors to control model complexity. For spline coefficients, we also care about <em>smoothness</em>, in addition to how they prior penalizes their distance from zero. Flatter functions will all have more similar spline coefficients.</p>
 <p>I also think this same idea shows up when choosing features to include in a regression model. I think it’s too easy to get yourself wrapped around the handle of choosing regressors, turning your modeling problem into model selection problem. This example shows that it’s preferable to have a more complex model <em>available</em> to the data, but to allow the data to choose a simpler model in the absence of evidence for a more complex model.</p>
+<p>As a resolution for this example, it doesn’t really matter if we choose the prior from experiment 1 and select 7 basis vectors, or take the prior from experiment 2 and select a larger number. It’s nice to know that in the context of more complicated models, as long as we don’t have identifiability issues, the approach of experiment 2 is both easier to implement and is more likely to yield better models.</p>
 
 
 </section>
