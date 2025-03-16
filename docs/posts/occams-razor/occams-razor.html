@@ -8,8 +8,9 @@
 
 <meta name="author" content="Bill Engels">
 <meta name="dcterms.date" content="2025-03-03">
+<meta name="description" content="Using priors to let the data choose model complexity instead of doing model selection">
 
-<title>The Bias-Variance tradeoff vs.&nbsp;‘Occam’s Razor’ – Bill Engels's Web Log</title>
+<title>The Bias-Variance tradeoff vs.&nbsp;Occam’s Razor – Bill Engels's Web Log</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -168,7 +169,7 @@ window.Quarto = {
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/bill-engels-a5239a119/"> <i class="bi bi-linkedin" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -184,8 +185,13 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">The Bias-Variance tradeoff vs.&nbsp;‘Occam’s Razor’</h1>
-                                <div class="quarto-categories">
+      <h1 class="title">The Bias-Variance tradeoff vs.&nbsp;Occam’s Razor</h1>
+                  <div>
+        <div class="description">
+          Using priors to let the data choose model complexity instead of doing model selection
+        </div>
+      </div>
+                          <div class="quarto-categories">
                 <div class="quarto-category">bayesian</div>
               </div>
                   </div>
@@ -223,7 +229,7 @@ window.Quarto = {
 
 
 
-<div id="dca3ddec-099f-47e2-8cbd-ab730243b1ca" class="cell" data-editable="true" data-slideshow="{&quot;slide_type&quot;:&quot;&quot;}" data-tags="[]" data-execution_count="1">
+<div id="dca3ddec-099f-47e2-8cbd-ab730243b1ca" class="cell" data-editable="true" data-slideshow="{&quot;slide_type&quot;:&quot;&quot;}" data-tags="[]" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymc <span class="im">as</span> pm</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
