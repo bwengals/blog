@@ -9,7 +9,7 @@
 <meta name="author" content="Bill Engels">
 <meta name="dcterms.date" content="2025-03-03">
 
-<title>Priors, polynomial regressions, and ‘Occam’s Razor’ – Bill Engels' Web Log</title>
+<title>The Bias-Variance tradeoff vs.&nbsp;‘Occam’s Razor’ – Bill Engels's Web Log</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -149,7 +149,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Bill Engels’ Web Log</span>
+    <span class="navbar-title">Bill Engels’s Web Log</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -184,7 +184,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Priors, polynomial regressions, and ‘Occam’s Razor’</h1>
+      <h1 class="title">The Bias-Variance tradeoff vs.&nbsp;‘Occam’s Razor’</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">bayesian</div>
               </div>
@@ -232,12 +232,23 @@ window.Quarto = {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>seed <span class="op">=</span> <span class="dv">12345678</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>logger <span class="op">=</span> logging.getLogger(<span class="st">"pymc"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>logger.handlers.clear()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># silence PyMC logging</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>logger <span class="op">=</span> logging.getLogger(<span class="st">"pymc"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>logger.handlers.clear()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>I had seen this quote in <a href="https://statmodeling.stat.columbia.edu/2024/05/26/is-there-a-balance-to-be-struck-between-simple-hierarchical-models-and-more-complex-hierarchical-models-that-augment-the-simple-frameworks-with-more-modeled-interactions-when-analyzing-real-data/">Gelman’s</a> <a href="https://statmodeling.stat.columbia.edu/2004/12/10/against_parsimo/">blog</a> awhile back that reminded me of a cool example I saw years and years ago from <a href="https://mlg.eng.cam.ac.uk/zoubin/papers/occam.pdf">this short paper titled “Occam’s razor”</a> from NIPS 2000. Andrew Gordon Wilson also demonstrates this with <a href="https://www.cs.cmu.edu/%7Eandrewgw/andrewgwthesis.pdf">a similar example in his thesis</a>.</p>
-<p>That paper showed that <strong>fitting an unknown function using a large number of basis function with <em>particular</em> regularizing priors was preferable to casting the problem as model selection and choosing the optimal number of basis vectors.</strong></p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<section id="the-bias-variance-tradeoff" class="level2">
+<h2 class="anchored" data-anchor-id="the-bias-variance-tradeoff">The bias / variance tradeoff</h2>
+<p>The bias / variance tradeoff is a tentpole of statistical learning theory. Here’s <a href="https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff">the wikipedia entry</a> if you need a refresher. The gist of it is:</p>
+<p>Adding more parameters to a model increases its ability to fit the training data set which decreasing the overall bias of the model’s predictions. Then, if you were to resample and refit the training set, the model’s parameters will be more different each time, increasing the variance in that sense.</p>
+<p>The usual advice that follows is to use model selection techniques to try and find a balance between the complexity of your model and the fit on your training data set. This blog post is about how to sidestep the model selection problem when we are in a Bayesian context by thinking carefully about our priors.</p>
+</section>
+<section id="the-subtle-part" class="level2">
+<h2 class="anchored" data-anchor-id="the-subtle-part">The subtle part</h2>
+<p>I had seen this quote in <a href="https://statmodeling.stat.columbia.edu/2024/05/26/is-there-a-balance-to-be-struck-between-simple-hierarchical-models-and-more-complex-hierarchical-models-that-augment-the-simple-frameworks-with-more-modeled-interactions-when-analyzing-real-data/">Gelman’s</a> <a href="https://statmodeling.stat.columbia.edu/2004/12/10/against_parsimo/">blog</a> awhile back that reminded me of a cool example I saw years and years ago from <a href="https://mlg.eng.cam.ac.uk/zoubin/papers/occam.pdf">this short paper titled “Occam’s razor”</a> from NIPS 2000. Andrew Gordon Wilson also demonstrates this with <a href="https://www.cs.cmu.edu/%7Eandrewgw/andrewgwthesis.pdf">a similar example in his thesis</a>.<br>
+That paper showed that <strong>fitting an unknown function using a large number of basis function with <em>particular</em> regularizing priors was preferable to casting the problem as model selection and choosing the optimal number of basis vectors.</strong></p>
 <p>The example in that paper made it click for me why non-parametric model components like Gaussian processes often work better than parametric models with a fixed set of features like polynomials or splines. I also use this idea when I’m choosing which features – actual features, not basis functions – to consider adding into regression models. So the quote, which is from <a href="https://glizen.com/radfordneal/bnn.book.html">Radford Neal</a> in the context of Bayesian neural networks, is:</p>
 <blockquote class="blockquote">
 <p>Sometimes a simple model will outperform a more complex model . . . Nevertheless, I believe that deliberately limiting the complexity of the model is not fruitful when the problem is evidently complex. Instead, if a simple model is found that outperforms some particular complex model, the appropriate response is to define a different complex model that captures whatever aspect of the problem led to the simple model performing well.</p>
@@ -245,8 +256,10 @@ window.Quarto = {
 <p>The goal of this post is to illustrate this idea by reproducing the example in the “Occam’s Razor” paper, but in a more modern software context using PyMC, sampling with NUTS, and finally using leave-one-out (LOO) crossvalidation for model selection.</p>
 <p>You’ve probably seen an example like this in textbooks: Given a simple scatterplot, fit a curve to it and use model selection to determine the right number of basis functions to use. You’re usually choosing the best polynomial order. The example is designed to demonstrate the <a href="https://gursimar.github.io/d3-visualizations/bias-var/">bias variance tradeoff</a>. Or alternatively you can <a href="https://alumni.media.mit.edu/~tpminka/statlearn/demo/">use the Bayesian evidence</a> to select the right polynomial degree.</p>
 <p>I think what Neal is saying is that it’s a mistake to transform the original problem into a new one, where the new goal is to find the “right” number of basis functions. It’s better to address the original problem directly, where the goal is to get a parsimonious representation of the unknown function. Most likely no one will ever care about the best number of basis vectors to use. By turning your modeling problem into a model selection problem, you’ve made your work harder.</p>
-<section id="the-two-experiments" class="level2">
-<h2 class="anchored" data-anchor-id="the-two-experiments">The two experiments</h2>
+</section>
+</section>
+<section id="two-experiments" class="level1">
+<h1>Two experiments</h1>
 <p>We’re going to run two experiments. First, and you’ve probably seen before, we’re going to build a sequence of polynomial regression models with increasing complexity and then choose the “best” model, according to the leave-one-out crossvalidation (LOO-CV) metric. We’ll use the exact same priors for the polynomial coefficients.</p>
 <p>Then in the second experiment, we’ll do the exact same thing, <strong>except, we’ll keep decreasing the prior scale we use for the polynomial coefficients as we add more terms</strong>. Instead of the number of basis vectors, we’re using our priors as the hedge against overfitting. Then we’ll see what LOO-CV says is the best model.</p>
 <p>We’ll use data generated from a step function with a bit of additive Gaussian noise for our two experiments. Notice that since we’re using polynomial basis functions, none of our proposed models will be correct. We’re in the <a href="https://arxiv.org/pdf/1704.02030">M-open case</a>.</p>
@@ -258,7 +271,7 @@ window.Quarto = {
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>plt.plot(x[:<span class="dv">25</span>], f[:<span class="dv">25</span>], color<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">"underlying function"</span>)</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x[<span class="dv">25</span>:], f[<span class="dv">25</span>:], color<span class="op">=</span><span class="st">'k'</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, <span class="st">'o'</span>, label<span class="op">=</span><span class="st">"observed data"</span>)<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, <span class="st">'o'</span>, label<span class="op">=</span><span class="st">"noisy observed data"</span>)<span class="op">;</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.xlim([<span class="dv">0</span>, <span class="dv">2</span>])<span class="op">;</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x"</span>)<span class="op">;</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"y"</span>)<span class="op">;</span></span>
@@ -272,8 +285,8 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<section id="details" class="level3">
-<h3 class="anchored" data-anchor-id="details">Details</h3>
+<section id="details-details-details" class="level2">
+<h2 class="anchored" data-anchor-id="details-details-details">Details, details, details</h2>
 <p>Before getting going and actually modeling this there’s one preliminary thing to mention. Feel free to skip over this bit about the QR decomposition because it’s not really core to the goal here. We just need it to make our priors on the polynomial coefficients comparable and on the same overall scale.</p>
 <p>We’ll use the <a href="https://betanalpha.github.io/assets/case_studies/qr_regression.html">QR decomposition</a> to orthogonalize our basis. I found some <a href="https://davmre.github.io/blog/python/2013/12/15/orthogonal_poly">Python code to do this here</a>, pasted below.</p>
 <div id="f6d82855-2b42-454b-b0d0-26f3a420a5f8" class="cell" data-execution_count="3">
@@ -625,8 +638,9 @@ Wall time: 3min 5s</code></pre>
 </div>
 </div>
 <p>The fit from Degree 7 and on are all essentially indistinguishable now.</p>
-<section id="bonus-points" class="level2">
-<h2 class="anchored" data-anchor-id="bonus-points">Bonus points</h2>
+</section>
+<section id="bonus-points" class="level1">
+<h1>Bonus points</h1>
 <p>What about <code>gamma</code>, how did we choose that? The <a href="https://mlg.eng.cam.ac.uk/zoubin/papers/occam.pdf">Occam’s razor paper also talks about this</a> (at the start of Sec. 3). This time we’ll just run it once as a 30 degree polynomial (which is only 5 less than the total number of data points!). We should get the same ELPD. Yes, this is how I chose the magic number <code>gamma = 1.25</code> above.</p>
 <div id="8de2ac72-caea-4996-b35d-596c3f203490" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pm.Model() <span class="im">as</span> model:</span>
@@ -984,8 +998,8 @@ Wall time: 3min 5s</code></pre>
 </div>
 <p>It looks like in this case putting a prior on <code>gamma</code> isn’t as good as choosing <code>gamma = 1.25</code>, however, notice that the ELPD estimates are all within the standard error of each other.</p>
 </section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<section id="summary" class="level1">
+<h1>Summary</h1>
 <p>We’ve essentially transformed a discrete prior on model complexity via the choice of the number of basis vectors, to a continuous prior on model complexity, represented by the <code>gamma</code> parameter. This example nicely demonstrates that the common example you’ve probably seen about model complexity and the bias variance trade-off isn’t really the whole story.</p>
 <p>Neal argues that it’s better to use a complex model where the simple model is a special case, and let the data decide. Gaussian processes are really good at doing this. In particular, the HSGP approximation looks almost exactly like this.</p>
 <p>There’s also a relationship to penalized splines. There’s a nice <a href="https://mc-stan.org/users/documentation/case-studies/splines_in_stan.html">case study in Stan</a> and an implementation <a href="https://gist.github.com/AustinRochford/d640a240af12f6869a7b9b592485ca15">here in PyMC</a>. The same underlying concept is at play here too. The idea is not to spend too much time choosing the number and location of knots, but instead choose “too many” knots and rely on the coefficient priors to control model complexity. For spline coefficients, we also care about <em>smoothness</em>, in addition to how they prior penalizes their distance from zero. Flatter functions will all have more similar spline coefficients.</p>
@@ -993,7 +1007,6 @@ Wall time: 3min 5s</code></pre>
 <p>As a resolution for this example, it doesn’t really matter if we choose the prior from experiment 1 and select 7 basis vectors, or take the prior from experiment 2 and select a larger number. It’s nice to know that in the context of more complicated models, as long as we don’t have identifiability issues, the approach of experiment 2 is both easier to implement and is more likely to yield better models.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

@@ -6,11 +6,11 @@ about:
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/in/bill-engels-a5239a119/
     - icon: github
       text: Github
       href: https://github.com/bwengals
 
 ---
 
-What about this blog
+Using this place to get better at writing, clear some headspace, and give free training to the LLM that will take my job in the future.
