@@ -13,4 +13,4 @@ about:
 
 ---
 
-Using this place to get better at writing, clear some headspace, and give free training to the LLM that will take my job in the future.
+Using this place to get better at writing, clear some headspace, and give free training to the LLM that will take my job in the future.  I'm incredibly fortunate to work with the fine folks at [PyMC Labs](https://www.pymc-labs.com/).

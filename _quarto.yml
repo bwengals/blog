@@ -9,8 +9,8 @@ website:
       - about.qmd
       - icon: github
         href: https://github.com/bwengals
-      - icon: twitter
-        href: https://twitter.com
+      - icon: linkedin
+        href: https://www.linkedin.com/in/bill-engels-a5239a119/ 
 format:
   html:
     theme:

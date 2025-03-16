@@ -1,5 +1,5 @@
 ---
-title: "Blog"
+title: "TODO: cleverer title"
 listing:
   contents: posts
   sort: "date desc"
